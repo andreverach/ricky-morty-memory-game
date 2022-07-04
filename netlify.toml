@@ -1,0 +1,7 @@
+[build]
+  publish = "dist/rick-morty-memory-game"
+  command = "ng build"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="p-3">
+    <select class="form-select" aria-label="choose-difficulty" [formControl]="difficulty">
+      <option value="">Choose difficulty</option>
+      <option value="2">Easy</option>
+      <option value="3">Medium</option>
+      <option value="4">Hard</option>
+    </select>
+  </div>
+  <!-- <div class="row" *ngIf="characters.length > 0"> -->
+  <div class="row" *ngIf="characters.length > 0 && showImages">
+    <div [class.disabled-items]="disabledItems"
+    [ngClass]="classColumn"
+    class="d-flex justify-content-center"
+    *ngFor="let character of characters, let i = index">
+      <app-card
+        #characterElement
+        [character]="character"
+        [indexCharacter]="i"
+        (clickCharacter)="clickCharacter($event)">
+      </app-card>
+    </div>
+  </div>
+  <div id="toastAlert" class="toast align-items-center text-bg-primary border-0" 
+  role="alert"
+   aria-live="assertive" 
+   aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
