@@ -42,5 +42,4 @@ testem.log
 Thumbs.db
 
 
-# Some
-netlify.toml
+# Some additional ignores
