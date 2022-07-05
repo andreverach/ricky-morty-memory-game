@@ -9,7 +9,11 @@
     </select>
   </div>
   <!-- <div class="row" *ngIf="characters.length > 0"> -->
-  <div class="row" *ngIf="characters.length > 0 && showImages">
+  <!-- aqui con row-cols-2 digo que siempre haya 2 columnas siempre que no se haya especificado
+      osea en el ts dinamicamente asigno una clase de acuerdo a la dificultad pero para pantallas
+      mas chicas como md y sm no las especifico entonces aqui agarra el row-cols-2 donde le asigna 2 columnas
+      a esos tamaños que no fueron especificados -->
+  <div class="row row-cols-2" *ngIf="characters.length > 0 && showImages">
     <div [class.disabled-items]="disabledItems"
     [ngClass]="classColumn"
     class="d-flex justify-content-center"
