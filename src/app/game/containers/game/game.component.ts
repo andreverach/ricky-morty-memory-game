@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { interval, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { Character } from 'src/app/core/models/character';
@@ -8,7 +8,7 @@ import { CharactersService } from 'src/app/core/services/characters.service';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit, OnDestroy {  
+export class GameComponent implements OnInit, AfterViewInit, OnDestroy {  
   //characters$!: Observable<Character[]>;
   characters: Character[] = [];
   difficulty: FormControl = new FormControl('');
@@ -21,10 +21,12 @@ export class GameComponent implements OnInit, OnDestroy {
   disabledItems: boolean = false;
   //guardo la referencia de todos los elementos creados
   @ViewChildren('characterElement') private characterElement!: QueryList<ElementRef>;
+  //referencia del toast
+  @ViewChild('toastNotification') private toastNotification!: ElementRef;
   constructor(
     private charactersService: CharactersService
   ) { }  
-
+  
   ngOnInit(): void {
     //podriamos mostrar una animacion como inicio antes de seleccionar una dificultad
     this.difficulty.valueChanges.
@@ -43,6 +45,10 @@ export class GameComponent implements OnInit, OnDestroy {
       console.log('characters-generated: ', this.characters);
     });
   }  
+
+  ngAfterViewInit(): void {
+    console.log('Lifecycle ngAfterViewInit');
+  }
 
   getCharacters(difficulty: number){
     const stringIds = this.charactersService.generateIds(difficulty);

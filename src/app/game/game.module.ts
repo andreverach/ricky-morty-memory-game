@@ -6,7 +6,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { GameComponent } from './containers/game/game.component';
 
-
 @NgModule({
   declarations: [
     NavbarComponent,
