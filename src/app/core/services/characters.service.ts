@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Character } from '../models/character';
 
@@ -30,11 +30,27 @@ export class CharactersService {
         stringIds +="," + Math.floor((Math.random() * (826 - 1 + 1)) + 1);
       }
     }
-    console.log('service-generateIds: ', stringIds);
+    //console.log('CharactersService.generateIds: ', stringIds);
     return stringIds;
   }
 
-  /* apiGetCharacters(stringIds: string): Observable<Character[]>{
+  //esta funcion clona al mismo array haciendolo doble para poder tener parejas
+  //y las coloca en orden aleatorio
+  concatAndShuffle(characters: Character[]): Character[]{
+    let index, character;
+    characters = characters.concat(characters);
+    const length = characters.length;
+    for (let i = 0; i < length; i++){
+      index = Math.floor(Math.random() * length);//genero un random index en base al tamaño
+      character = characters[index];//capturo al item de ese index
+      characters[index] = characters[i];//en esa posicion coloco el item actual
+      characters[i] = character;//y en la posicion actual coloco el item del index
+    }
+    return characters;
+  }
+
+  /* transformar la data que recibo
+  apiGetCharacters(stringIds: string): Observable<Character[]>{
     return this.httpClient.get<Character[]>(`${environment.apiUrl}character/${stringIds}`)
     .pipe(
       map( data => data.map(character => {

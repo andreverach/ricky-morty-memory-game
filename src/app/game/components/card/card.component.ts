@@ -1,29 +1,26 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Character } from 'src/app/core/models/character';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
-  //changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./card.component.scss']  
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
 
   @Input() character!: Character;
   @Input() indexCharacter!: number;
   @Output() clickCharacter = new EventEmitter<any>();
-  image: string = "assets/rm-bg.png";//default
+  image: string = "assets/rm-bg.png";//default background image
+  matched: boolean = false;//default false
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   checkImage(character: Character, index: number){
-    console.log({character});
     this.image = character.image;
     const obj = {
       character: character,
-      index: index
+      index: index,
+      matched: this.matched
     };
     this.clickCharacter.emit(obj);
   }

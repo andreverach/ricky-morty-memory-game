@@ -8,11 +8,13 @@
       <option value="4">Hard</option>
     </select>
   </div>
-  <!-- <div class="row" *ngIf="characters.length > 0"> -->
-  <!-- aqui con row-cols-2 digo que siempre haya 2 columnas siempre que no se haya especificado
+  <!-- 
+    <div class="row" *ngIf="characters.length > 0">
+    aqui con row-cols-2 digo que siempre haya 2 columnas siempre que no se haya especificado
       osea en el ts dinamicamente asigno una clase de acuerdo a la dificultad pero para pantallas
       mas chicas como md y sm no las especifico entonces aqui agarra el row-cols-2 donde le asigna 2 columnas
-      a esos tamaños que no fueron especificados -->
+      a esos tamaños que no fueron especificados 
+    -->
   <div class="row row-cols-2 position-relative" *ngIf="characters.length > 0 && showImages">
     <div [class.disabled-items]="disabledItems"
     [ngClass]="classColumn"
@@ -26,8 +28,9 @@
       </app-card>
     </div>
   </div>  
-
-<!--   <ngb-toast
+  <app-toast></app-toast>
+<!--   
+  <ngb-toast
   *ngFor="let toast of toastService.toasts"
   [class]="toast.classname"
   [autohide]="true"
@@ -39,9 +42,6 @@
   </ng-template>
 
   <ng-template #text>{{ toast.textOrTpl }}</ng-template>
-  </ngb-toast> -->
-
-  <app-toast></app-toast>
-
-
+  </ngb-toast> 
+-->
 </div>
