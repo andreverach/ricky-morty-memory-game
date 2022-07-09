@@ -15,7 +15,6 @@ Ricky and Morty challenge to participate in the Gentleman Programming Hackathon
 - Smart and dumb components
 - Lazy Loading
 - RXJS
-- Change Detection
 - API [Rick&Morty](https://rickandmortyapi.com/)
 - Deployed on [Netlify](https://www.netlify.com/)
 
