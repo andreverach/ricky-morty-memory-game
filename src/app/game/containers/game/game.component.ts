@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ToastService } from '@core/services/toast.service';
 import { interval, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { Character } from 'src/app/core/models/character';
 import { CharactersService } from 'src/app/core/services/characters.service';
@@ -18,16 +19,20 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   attemps: any[] = [];
   hits: number = 0;
   failures: number = 0;
-  disabledItems: boolean = false;
+  disabledItems: boolean = false;  
   //guardo la referencia de todos los elementos creados
   @ViewChildren('characterElement') private characterElement!: QueryList<ElementRef>;
-  //referencia del toast
-  @ViewChild('toastNotification') private toastNotification!: ElementRef;
   constructor(
-    private charactersService: CharactersService
-  ) { }  
+    private charactersService: CharactersService,
+    public toastService: ToastService
+  ) { 
+    console.log('constructor');
+    //load componentns at rhwe runtimeCompenntFactoryalgo asi
+    //replay subject
+  }  
   
   ngOnInit(): void {
+    console.log('init');
     //podriamos mostrar una animacion como inicio antes de seleccionar una dificultad
     this.difficulty.valueChanges.
     pipe(
@@ -50,9 +55,24 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('Lifecycle ngAfterViewInit');
   }
 
+  showToast(message:string, classname: string){
+    //bg-success text-light es la clase por defecto
+    //position-absolute top-50 start-50 translate-middle para centrarlo en pantalla
+    this.toastService.show(
+      message,
+      { 
+        classname: classname + ' text-light position-absolute top-50 start-50 translate-middle', 
+        delay: 3000 
+      });//3seg
+  }
+
   getCharacters(difficulty: number){
-    const stringIds = this.charactersService.generateIds(difficulty);
-    return this.charactersService.apiGetCharacters(stringIds);
+    if(difficulty > 0){
+      const stringIds = this.charactersService.generateIds(difficulty);
+      return this.charactersService.apiGetCharacters(stringIds);
+    }else {
+      return [];
+    }
   }
 
   concatAndShuffle(characters: Character[]): Character[]{
@@ -83,8 +103,10 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         this.disabledItems = false;
         console.log('has acertado!', this.hits);
         if(this.hits === winPoints){//si los hits es igual a los puntos que tiene que adivinar
+          this.showToast('Congratulations, you win!', 'bg-success');
           console.log('El juego ha terminado!', this.hits);//gana el juego
           this.resetGame();//se resetean los puntos
+          this.difficulty.setValue('');//seteo la dificultad
         }
       }else{//si falla
         this.failures++;//suma las fallas
@@ -103,7 +125,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.attemps = [];//limpio intentos
     this.characterElement = new QueryList<ElementRef>;
     this.disabledItems = false;//habilito los items
-    console.log('Elementos creados: ', this.characterElement.length);
+    this.characters = [];//limpio los personajes    
+    console.log('Elementos creados: ', this.characterElement.length);//confirmo que han sido eliminados
   }
 
   blurCards(attemps: any[]){
@@ -124,5 +147,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     //valueChanges unsuscribe
     this.unsuscribeObservables$.next(true);
     this.unsuscribeObservables$.complete();
+    //totast list clear
+    this.toastService.clear();
   }
 }

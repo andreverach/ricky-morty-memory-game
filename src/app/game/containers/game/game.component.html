@@ -13,7 +13,7 @@
       osea en el ts dinamicamente asigno una clase de acuerdo a la dificultad pero para pantallas
       mas chicas como md y sm no las especifico entonces aqui agarra el row-cols-2 donde le asigna 2 columnas
       a esos tamaños que no fueron especificados -->
-  <div class="row row-cols-2" *ngIf="characters.length > 0 && showImages">
+  <div class="row row-cols-2 position-relative" *ngIf="characters.length > 0 && showImages">
     <div [class.disabled-items]="disabledItems"
     [ngClass]="classColumn"
     class="d-flex justify-content-center"
@@ -25,5 +25,23 @@
         (clickCharacter)="clickCharacter($event)">
       </app-card>
     </div>
-  </div>
+  </div>  
+
+<!--   <ngb-toast
+  *ngFor="let toast of toastService.toasts"
+  [class]="toast.classname"
+  [autohide]="true"
+  [delay]="toast.delay || 5000"
+  (hidden)="toastService.remove(toast)"
+  >
+  <ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
+    <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+  </ng-template>
+
+  <ng-template #text>{{ toast.textOrTpl }}</ng-template>
+  </ngb-toast> -->
+
+  <app-toast></app-toast>
+
+
 </div>

@@ -6,16 +6,21 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { GameComponent } from './containers/game/game.component';
 
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from './components/toast/toast.component';
+
 @NgModule({
   declarations: [
     NavbarComponent,
     CardComponent,
-    GameComponent
+    GameComponent,
+    ToastComponent
   ],
   imports: [
     CommonModule,
     GameRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbToastModule
   ]
 })
 export class GameModule { }
