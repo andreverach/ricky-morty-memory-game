@@ -49,12 +49,13 @@ export class GameComponent implements OnInit, OnDestroy {
   }  
 
   showToast(message:string, classname: string){
-    //bg-success text-light es la clase por defecto
-    //position-absolute top-50 start-50 translate-middle para centrarlo en pantalla
+    //bg-success text-light es la clase por defecto del toast (bg-success lo envio por variable)
+    //position-absolute top-50 start-50 translate-middle para centrar el toast en pantalla
+    //text-center solo para centrar el texto
     this.toastService.show(
       message,
       { 
-        classname: classname + ' text-light position-absolute top-50 start-50 translate-middle', 
+        classname: classname + ' text-light text-center position-absolute top-50 start-50 translate-middle', 
         delay: 3000
       });//3seg
   }
@@ -88,10 +89,15 @@ export class GameComponent implements OnInit, OnDestroy {
         this.matchedCards(this.attemps);//los envio para matchear
         //console.log('has acertado!', this.hits);
         if(this.hits === winPoints){//si los hits es igual a los puntos que tiene que adivinar
-          this.showToast('Congratulations, you win! (' + this.hits + ' attemps)', 'bg-success');
+          //(this.hits + this.failures) sumando se mostraria la cantidad de intentos
+          this.showToast('Congratulations, you win!', 'bg-success');
           //console.log('El juego ha terminado!', this.hits);//gana el juego
-          this.resetGame();//se resetean los puntos
-          this.difficulty.setValue('');//seteo la dificultad
+          interval(2000)
+          .pipe(take(1))
+          .subscribe(() => {
+            this.resetGame();//se resetean los puntos
+            this.difficulty.setValue('');//seteo la dificultad
+          });
         }
       }else{//si falla
         this.failures++;//suma las fallas
