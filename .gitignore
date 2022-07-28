@@ -43,3 +43,4 @@ Thumbs.db
 
 
 # Some additional ignores
+package-lock.json
