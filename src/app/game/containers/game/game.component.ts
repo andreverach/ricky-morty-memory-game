@@ -46,6 +46,8 @@ export class GameComponent implements OnInit, OnDestroy {
       this.showImages = true;
       this.characters = this.charactersService.concatAndShuffle(characters);
     });
+
+    console.log('un cambio test!');
   }  
 
   showToast(message:string, classname: string){
