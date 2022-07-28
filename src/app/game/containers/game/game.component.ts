@@ -47,7 +47,8 @@ export class GameComponent implements OnInit, OnDestroy {
       this.characters = this.charactersService.concatAndShuffle(characters);
     });
 
-    console.log('un cambio test!');
+    console.log('un cambio test - public repo!');
+    console.log('un cambio test - private repo!');
   }  
 
   showToast(message:string, classname: string){
