@@ -1,0 +1,12 @@
+<div class="contenedor">
+  <div class="cube" *ngIf="(characters$ | async) as characters">
+     <div class="card" *ngFor="let character of characters">
+        <a href="#" class="cube-character-image">
+          <img [src]="character.image"
+           [title]="character.name" 
+           [alt]="character.name">
+        </a>
+     </div>
+  </div>
+</div>
+

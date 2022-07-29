@@ -1,0 +1,26 @@
+<!-- 
+  clases para los div de las imagenes: tall wide big 
+  ; let even = even; let odd = odd
+  [ngClass]="{'wide':even, 'tall':odd}"
+-->
+<div class="grid-wrapper p-2">
+	<div
+    [ngClass]="character.className"
+    *ngFor="let character of characters; trackBy: trackByFn">
+		<img 
+      class="cursor-pointer"
+      [src]="character.image" 
+      [alt]="character.name"
+      (click)="goToCharacterDetail(character.id)" />
+	</div>
+</div>
+<div class="container text-center mt-2 mb-2">
+  <div class="col align-self-center">
+    <button type="button" class="btn btn-sm btn-primary bg-dark-green" (click)="loadMore()">
+      Load more
+    </button>
+    <a class="btn btn-sm btn-primary bg-sapling ms-1 cursor-pointer" (click)="goToTop()">
+      Go to top
+    </a>
+  </div>  
+</div>

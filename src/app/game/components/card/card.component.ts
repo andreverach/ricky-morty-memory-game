@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Character } from 'src/app/core/models/character';
+import { Character } from '@core/models/character';
 
 @Component({
   selector: 'app-card',
@@ -12,8 +12,7 @@ export class CardComponent {
   @Input() indexCharacter!: number;
   @Output() clickCharacter = new EventEmitter<any>();
   image: string = "assets/rm-bg.png";//default background image
-  matched: boolean = false;//default false
-  constructor() { }
+  matched: boolean = false;//default false  
 
   checkImage(character: Character, index: number){
     this.image = character.image;

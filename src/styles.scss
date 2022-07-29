@@ -1,12 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  background-color: #EAF2F8;
+}
 .bg-dark-green{
   color: #ffffff !important;
   background-color: #002939 !important;
+  border-color: #002939 !important;
 }
 
 .bg-sapling{
   color: #002939 !important;
   background-color: #e4cfa9 !important;
+  border-color: #e4cfa9 !important;
 }
 
 .txt-dark-green{
@@ -15,4 +20,7 @@
 
 .txt-sapling{
   color: #e4cfa9 !important;
+}
+.cursor-pointer{
+  cursor: pointer;
 }

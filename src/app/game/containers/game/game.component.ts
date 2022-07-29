@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ToastService } from '@core/services/toast.service';
 import { interval, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
-import { Character } from 'src/app/core/models/character';
-import { CharactersService } from 'src/app/core/services/characters.service';
+import { ToastService } from '@core/services/toast.service';
+import { Character } from '@core/models/character';
+import { CharactersService } from '@core/services/characters.service';
 
 @Component({
   selector: 'app-game',
@@ -64,7 +64,7 @@ export class GameComponent implements OnInit, OnDestroy {
     //esto me soluciona para cuando sete el value del difficulty a vacio ya que busca y al ser vacio me da un error poraqui
     if(difficulty > 0){
       const stringIds = this.charactersService.generateIds(difficulty);
-      return this.charactersService.apiGetCharacters(stringIds);
+      return this.charactersService.apiGetCharactersGame(stringIds);
     }else {
       return [];//y ya al ser vacio entonces devuelvo un array vacio
     }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Character } from '../models/character';
+import { Character, CharacterInfo } from '../models/character';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,17 @@ export class CharactersService {
   ) { }
 
 
-  apiGetCharacters(stringIds: string): Observable<Character[]>{
+  apiGetCharactersGame(stringIds: string): Observable<Character[]>{
     return this.httpClient.get<Character[]>(`${environment.apiUrl}character/${stringIds}`);
+  }
+  
+  apiGetCharactersPaginate(page: number): Observable<Character[]>{
+    const pageUrl = page>0?'?page='+page:'';
+    return this.httpClient.get<Character[]>(`${environment.apiUrl}character${pageUrl}`);
+  }
+
+  apiGetOneCharacter(id: number): Observable<CharacterInfo>{
+    return this.httpClient.get<CharacterInfo>(`${environment.apiUrl}character/${id}`);
   }
 
   generateIds(difficulty: number): string{

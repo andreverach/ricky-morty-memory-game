@@ -1,26 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameRoutingModule } from './game-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { GameRoutingModule } from './game-routing.module';
+import { SharedModule } from '@shared/shared.module';
 import { CardComponent } from './components/card/card.component';
 import { GameComponent } from './containers/game/game.component';
 
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastComponent } from './components/toast/toast.component';
-
 @NgModule({
   declarations: [
-    NavbarComponent,
     CardComponent,
-    GameComponent,
-    ToastComponent
+    GameComponent,    
   ],
   imports: [
     CommonModule,
     GameRoutingModule,
-    ReactiveFormsModule,
-    NgbToastModule
+    ReactiveFormsModule,  
+    SharedModule,
   ]
 })
 export class GameModule { }
