@@ -1,25 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./app/shared/styles/variables.scss";
 body{
-  background-color: #EAF2F8;
+  background-color: $base-background-color;
 }
 .bg-dark-green{
   color: #ffffff !important;
-  background-color: #002939 !important;
-  border-color: #002939 !important;
+  background-color: $dark-green-color !important;
+  border-color: $dark-green-color !important;
 }
 
 .bg-sapling{
-  color: #002939 !important;
-  background-color: #e4cfa9 !important;
-  border-color: #e4cfa9 !important;
+  color: $dark-green-color !important;
+  background-color: $sapling-color !important;
+  border-color: $sapling-color !important;
 }
 
 .txt-dark-green{
-  color: #002939 !important;
+  color: $dark-green-color !important;
 }
 
 .txt-sapling{
-  color: #e4cfa9 !important;
+  color: $sapling-color !important;
 }
 .cursor-pointer{
   cursor: pointer;

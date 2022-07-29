@@ -3,24 +3,31 @@
   ; let even = even; let odd = odd
   [ngClass]="{'wide':even, 'tall':odd}"
 -->
-<div class="grid-wrapper p-2">
-	<div
-    [ngClass]="character.className"
-    *ngFor="let character of characters; trackBy: trackByFn">
-		<img 
-      class="cursor-pointer"
-      [src]="character.image" 
-      [alt]="character.name"
-      (click)="goToCharacterDetail(character.id)" />
-	</div>
-</div>
-<div class="container text-center mt-2 mb-2">
-  <div class="col align-self-center">
-    <button type="button" class="btn btn-sm btn-primary bg-dark-green" (click)="loadMore()">
-      Load more
-    </button>
-    <a class="btn btn-sm btn-primary bg-sapling ms-1 cursor-pointer" (click)="goToTop()">
-      Go to top
-    </a>
-  </div>  
+<app-progress-bar></app-progress-bar>
+<div *ngIf="characters.length > 0">
+  <div class="grid-wrapper p-2">
+    <div
+      [ngClass]="character.className"
+      *ngFor="let character of characters; trackBy: trackByFn">
+      <img 
+        class="cursor-pointer"
+        [src]="character.image" 
+        [alt]="character.name"
+        (click)="goToCharacterDetail(character.id)" />
+    </div>
+  </div>
+  <div class="container text-center mt-2 mb-2">
+    <div class="col align-self-center">
+      <button type="button" class="btn btn-sm btn-primary bg-dark-green" (click)="loadMore()">
+        Load more
+        <app-spinner></app-spinner>
+        <!-- <div class="spinner-border spinner-border-sm" role="status" *ngIf="loadingMore">
+          <span class="visually-hidden">Loading...</span>
+        </div> -->
+      </button>
+      <a class="btn btn-sm btn-primary bg-sapling ms-1 cursor-pointer" (click)="goToTop()">
+        Go to top
+      </a>
+    </div>  
+  </div>
 </div>

@@ -5,20 +5,26 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ToastComponent,
+    ProgressBarComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    NgbToastModule
+    NgbToastModule,
   ],
   exports: [
     NavbarComponent,
-    ToastComponent
+    ToastComponent,
+    ProgressBarComponent,
+    SpinnerComponent,
   ]
 })
 

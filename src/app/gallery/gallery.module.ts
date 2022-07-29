@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { GalleryRoutingModule } from './gallery-routing.module';
 import { GalleryComponent } from './containers/gallery/gallery.component';
 import { DetailComponent } from './containers/detail/detail.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DetailComponent } from './containers/detail/detail.component';
   imports: [
     CommonModule,
     RouterModule,
-    GalleryRoutingModule,    
+    GalleryRoutingModule,
+    SharedModule
   ]
 })
 export class GalleryModule { }

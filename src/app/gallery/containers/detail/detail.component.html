@@ -1,2 +1,54 @@
-<p>detail works!</p>
-{{ characterInfo$ | async | json }}
+<div class="container">
+  <app-progress-bar></app-progress-bar>
+</div>
+<div class="container mt-5" *ngIf="(characterInfo$ | async) as character">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-7">
+      <div class="card p-3 py-4">
+        <div class="text-center">
+          <img [src]="character.image" width="100" class="rounded-circle">
+        </div>
+        <div class="text-center mt-3">
+          <span 
+          [ngClass]="{
+            'bg-alive':character.status == 'Alive', 
+            'bg-dead':character.status == 'Dead',
+            'bg-unknown':character.status == 'unknown'
+          }"
+          class="p-1 px-4 rounded text-white">
+            {{ character.status }}
+          </span>          
+          <h5 class="mt-2 mb-0">
+            {{ character.name }}
+          </h5>
+          <span>
+            {{ character.species }}/{{ character.gender }} {{ character.type }}
+          </span>
+          <div class="px-4 mt-1">
+            <p class="fonts">
+              {{ character.origin.name }} <br />
+              {{ character.location.name }}
+            </p>            
+          </div>          
+          <ul class="social-list">
+            <li>
+              Episodes: {{ character.episode.length }}
+            </li>
+          </ul>                  
+          <div class="buttons">                      
+            <button 
+              type="button" 
+              class="btn btn-outline-primary px-4"
+              (click)="previousCharacter()"
+              [disabled]="characterId == 1">Previous</button>
+            <button 
+              type="button" 
+              class="btn btn-primary px-4 ms-3"
+              (click)="nextCharacter()"
+              [disabled]="characterId == 826">Next</button>
+          </div>                                    
+        </div>                                                       
+      </div>          
+    </div>      
+  </div>  
+</div>

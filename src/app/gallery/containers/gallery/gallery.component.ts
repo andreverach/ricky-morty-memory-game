@@ -14,6 +14,8 @@ export class GalleryComponent implements OnInit {
 
   characters: CharacterInfo[] = [];
   page: number = 1;
+  loadingCharacters: boolean = false;
+  loadingMore: boolean = false;
   paginateInfo: Paginate = {
     count: 0,
     next: '',
@@ -30,6 +32,7 @@ export class GalleryComponent implements OnInit {
   }
 
   getCharacters(){
+    this.loadingCharacters = true;
     this.charactersService.apiGetCharactersPaginate(this.page)
     .subscribe((response: any) => {
       this.paginateInfo = response.info;
@@ -37,6 +40,8 @@ export class GalleryComponent implements OnInit {
         return this.assignClassToCharacter(character);
       });
       this.characters = this.characters.concat(mapCharacters);
+      this.loadingCharacters = false;
+      this.loadingMore = false;      
     });
   }
 
@@ -46,6 +51,7 @@ export class GalleryComponent implements OnInit {
 
   loadMore(){
     this.page++;
+    this.loadingMore = true;
     this.getCharacters();
   }
 

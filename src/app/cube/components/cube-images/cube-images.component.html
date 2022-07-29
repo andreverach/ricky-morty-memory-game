@@ -1,7 +1,10 @@
-<div class="contenedor">
+<div class="container">
+   <app-progress-bar></app-progress-bar>
+</div>
+<div class="contenedor">   
   <div class="cube" *ngIf="(characters$ | async) as characters">
      <div class="card" *ngFor="let character of characters">
-        <a href="#" class="cube-character-image">
+        <a [routerLink]="['/gallery/character', character.id]" class="cube-character-image">
           <img [src]="character.image"
            [title]="character.name" 
            [alt]="character.name">

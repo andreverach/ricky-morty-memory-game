@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CharacterInfo } from '@core/models/character';
 import { CharactersService } from '@core/services/characters.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -13,20 +13,41 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   unsuscribeObservables$: Subject<boolean> = new Subject();
   characterInfo$!: Observable<CharacterInfo>;
+  characterId: number = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private charactersService: CharactersService,
+    private route: Router
   ) { }  
 
   ngOnInit(): void {
-    const characterId = this.activatedRoute.snapshot.params['id'];
-    this.characterInfo$ = this.charactersService.apiGetOneCharacter(characterId);
-    /* console.log('snapshot: ', data);
+    //this.characterId = this.activatedRoute.snapshot.params['id'];
     this.activatedRoute.params
-    .pipe(takeUntil(this.unsuscribeObservables$))
-    .subscribe((params: Params) => {
-      console.log('paramsSubscribe: ', params['id']);
-    }); */
+      .pipe(takeUntil(this.unsuscribeObservables$))
+      .subscribe((params: Params) => {
+        this.characterId = params['id'];
+        this.getCharacter();
+      });    
+    /* console.log('snapshot: ', data);
+    */
+  }
+
+  getCharacter(){
+    this.characterInfo$ = this.charactersService.apiGetOneCharacter(this.characterId);
+  }
+
+  previousCharacter(){
+    if(this.characterId > 1){
+      this.characterId--;
+      this.route.navigate(['/gallery/character', this.characterId]);
+    }    
+  }
+
+  nextCharacter(){
+    if(this.characterId < 826){
+      this.characterId++;
+      this.route.navigate(['/gallery/character', this.characterId]);
+    }
   }
 
   ngOnDestroy(): void {

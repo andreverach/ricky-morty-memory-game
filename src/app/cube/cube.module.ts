@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CubeRoutingModule } from './cube-routing.module';
 import { CubeComponent } from './containers/cube/cube.component';
 import { CubeImagesComponent } from './components/cube-images/cube-images.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CubeImagesComponent } from './components/cube-images/cube-images.compon
   ],
   imports: [
     CommonModule,
-    CubeRoutingModule
+    CubeRoutingModule,
+    SharedModule
   ]
 })
 export class CubeModule { }

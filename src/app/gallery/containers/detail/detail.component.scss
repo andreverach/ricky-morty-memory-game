@@ -1,0 +1,90 @@
+@import "./../../../shared/styles/variables.scss";
+
+.bg-alive{
+  background-color: #2ecc71;
+}
+.bg-dead{
+  background-color: #e74c3c;
+}
+.bg-unknown{
+  background-color: #95a5a6;
+}
+
+.card{
+  border:none;
+  position:relative;
+  overflow:hidden;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.card:before{
+  
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:4px;
+  height:100%;
+  background-color: $sapling-color;
+  transform:scaleY(1);
+  transition:all 0.5s;
+  transform-origin: bottom
+}
+
+.card:after{
+  
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:4px;
+  height:100%;
+  background-color:$dark-green-color;
+  transform:scaleY(0);
+  transition:all 0.5s;
+  transform-origin: bottom
+}
+
+.card:hover::after{
+  transform:scaleY(1);
+}
+
+
+.fonts{
+  font-size:11px;
+}
+
+.social-list{
+  display:flex;
+  list-style:none;
+  justify-content:center;
+  padding:0;
+}
+
+.social-list li{
+  padding:10px;
+  color:$dark-green-color;
+  font-size:19px;
+}
+
+
+.buttons button:nth-child(1){
+     border:1px solid $dark-green-color !important;
+     color:$dark-green-color;
+     height:40px;
+}
+
+.buttons button:nth-child(1):hover{
+     border:1px solid $dark-green-color !important;
+     color:#fff;
+     height:40px;
+     background-color:$dark-green-color;
+}
+
+.buttons button:nth-child(2){
+     border:1px solid $dark-green-color !important;
+     background-color:$dark-green-color;
+     color:#fff;
+      height:40px;
+}
