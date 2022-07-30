@@ -1,13 +1,13 @@
 
 # MemoryGame - Ricky and Morty
 
-Ricky and Morty challenge to participate in the Gentleman Programming Hackathon
+Ricky and Morty challenge to participate in the Gentleman Programming Hackathon.
 - [Demo](https://clever-haupia-c496bd.netlify.app/)
 
 ## Tech Stack
 
-- Angular 14
-- Bootstrap
+- Angular 14 | Javascript - Typescript
+- Bootstrap | CSS - SCSS
 
 ## Features
 
@@ -15,6 +15,7 @@ Ricky and Morty challenge to participate in the Gentleman Programming Hackathon
 - Smart and dumb components
 - Lazy Loading
 - RXJS
+- Interceptors
 - API [Rick&Morty](https://rickandmortyapi.com/)
 - Deployed on [Netlify](https://www.netlify.com/)
 
