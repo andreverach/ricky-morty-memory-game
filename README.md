@@ -16,6 +16,7 @@ Ricky and Morty challenge to participate in the Gentleman Programming Hackathon.
 - Lazy Loading
 - RXJS
 - Interceptors
+- Change Detection
 - API [Rick&Morty](https://rickandmortyapi.com/)
 - Deployed on [Netlify](https://www.netlify.com/)
 
