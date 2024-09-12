@@ -2,7 +2,7 @@
 # MemoryGame - Ricky and Morty
 
 Ricky and Morty challenge to participate in the Gentleman Programming Hackathon.
-- [Demo](https://clever-haupia-c496bd.netlify.app/)
+- [Demo](https://rickymorty-hackathon.netlify.app/)
 
 ## Tech Stack
 
